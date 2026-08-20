@@ -1,24 +1,11 @@
-import { redirect } from "next/navigation";
 import type { InputHTMLAttributes } from "react";
+import { sendContactMessage } from "./actions";
 
 export const metadata = {
 	title: "Contato • Petesy",
 	description:
 		"Fale conosco para dúvidas, sugestões ou parcerias. Estamos aqui para ajudar.",
 };
-
-export async function sendContactMessage(formData: FormData) {
-	"use server";
-	const name = String(formData.get("name") ?? "").trim();
-	const email = String(formData.get("email") ?? "").trim();
-	const message = String(formData.get("message") ?? "").trim();
-
-	if (!name || !email || !message) {
-		redirect("/contato?success=0");
-	}
-
-	redirect("/contato?success=1");
-}
 
 export default async function ContatoPage(props: PageProps<"/contact">) {
 	const searchParams = await props.searchParams;
