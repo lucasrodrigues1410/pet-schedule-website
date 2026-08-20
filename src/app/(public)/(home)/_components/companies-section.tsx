@@ -1,11 +1,7 @@
-import { cacheLife } from "next/cache";
 import { CompanyCard } from "@/components/company-card";
 import { searchCompanies } from "@/lib/http-public";
 
 export async function CompaniesSection() {
-	"use cache";
-	cacheLife("days");
-
 	const companies = await searchCompanies();
 
 	return (
